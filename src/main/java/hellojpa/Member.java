@@ -6,33 +6,39 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
+@SequenceGenerator(name = "member_seq_generator",
+                   sequenceName = "member_seq123", // 매핑할 데이터베이스 시퀀스 이름
+                   initialValue = 1, allocationSize = 50)
 public class Member {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                    generator = "member_seq_generator")
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String username;
 
-    private Integer age;
 
-    @Enumerated(EnumType.STRING) // String 으로 작성해야함.
-    private RoleType roleType;
+    //
+    public Member() {
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP)   // Temporal 과거버전
-    private Date lastModifiedDate;
+    public Long getId() {
+        return id;
+    }
 
-    private LocalDate testLocalDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @Lob // varchar 넘어서는 큰
-    private String description;
+    public String getUsername() {
+        return username;
+    }
 
-    @Transient
-    private int temp;
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-
-    //Getter, Setter…
 }
