@@ -1,31 +1,38 @@
 package hellojpa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Member {
 
     @Id
     private Long id;
-    private String name;
+
+    @Column(name = "name", nullable = false)
+    private String username;
+
+    private Integer age;
+
+    @Enumerated(EnumType.STRING) // String 으로 작성해야함.
+    private RoleType roleType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)   // Temporal 과거버전
+    private Date lastModifiedDate;
+
+    private LocalDate testLocalDate;
+
+    @Lob // varchar 넘어서는 큰
+    private String description;
+
+    @Transient
+    private int temp;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
+    //Getter, Setter…
 }
