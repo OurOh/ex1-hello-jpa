@@ -6,25 +6,24 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@SequenceGenerator(name = "member_seq_generator",
-                   sequenceName = "member_seq123", // 매핑할 데이터베이스 시퀀스 이름
-                   initialValue = 1, allocationSize = 50)
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                    generator = "member_seq_generator")
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String username;
+    @Column(name = "USERNAME")
+    private String userName;
+
+    //@Column(name = "TEAM_ID")
+    //private Long teamId;
+
+    @ManyToOne // 다 대 일
+    @JoinColumn(name = "TEAM_ID") // 외래키가 있는 연관관계 주인
+    private Team team; // 요거와 mappedBy
 
 
     //
-    public Member() {
-
-    }
-
     public Long getId() {
         return id;
     }
@@ -33,12 +32,21 @@ public class Member {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
 }
