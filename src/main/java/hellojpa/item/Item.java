@@ -1,4 +1,4 @@
-package hellojpa;
+package hellojpa.item;
 
 import jakarta.persistence.*;
 
@@ -12,6 +12,7 @@ public abstract class Item {
 
     private String name;
     private int price;
+
 
     public Long getId() {
         return id;

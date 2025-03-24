@@ -18,7 +18,7 @@ public class Member {
     //@Column(name = "TEAM_ID")
     //private Long teamId;
 
-    @ManyToOne // 다 대 일
+    @ManyToOne(fetch = FetchType.LAZY) // 다 대 일
     @JoinColumn(name = "TEAM_ID") // 외래키가 있는 연관관계 주인
     private Team team; // 요거와 mappedBy
 
