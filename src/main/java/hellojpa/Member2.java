@@ -2,11 +2,8 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @Entity
-public class Member {
+public class Member2 {
 
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -20,7 +17,7 @@ public class Member {
 
     @ManyToOne(fetch = FetchType.LAZY) // 다 대 일
     @JoinColumn(name = "TEAM_ID") // 외래키가 있는 연관관계 주인
-    private Team team; // 요거와 mappedBy
+    private Team2 team; // 요거와 mappedBy
 
 
     //
@@ -40,12 +37,12 @@ public class Member {
         this.userName = userName;
     }
 
-    public Team getTeam() {
+    public Team2 getTeam() {
         return team;
     }
 
 
-    public void setTeam(Team team) {
+    public void setTeam(Team2 team) {
         this.team = team;
     }
 
